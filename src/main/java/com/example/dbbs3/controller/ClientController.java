@@ -3,6 +3,7 @@ package com.example.dbbs3.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.example.dbbs3.entity.Client;
 import com.example.dbbs3.service.ClientService;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class ClientController {
 	
@@ -62,7 +64,7 @@ public class ClientController {
 	
 	@RequestMapping(value = "/validateLogin", method = RequestMethod.POST)
 	@ResponseBody
-	public boolean validateLogin(@RequestBody ObjectNode clientLogin) {
+	public String validateLogin(@RequestBody ObjectNode clientLogin) {
 		return service.validateLogin(clientLogin.get("accNumber").asText(), clientLogin.get("pin").asText());
 	}
 	

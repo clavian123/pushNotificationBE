@@ -64,7 +64,7 @@ public class ClientService {
 		repository.save(existingClient);
 	}
 	
-	public boolean validateLogin(String accNumber, String pin) {
+	public String validateLogin(String accNumber, String pin) {
 		int accNum = Integer.parseInt(accNumber);
 		List<Client> clients = new ArrayList<>();
 		clients = repository.findAll();
@@ -72,13 +72,13 @@ public class ClientService {
 		do {
 			if (accNum == clients.get(i).getAccNumber()) {
 				if(pin.equals(clients.get(i).getPin())) {
-					return true;
+					return clients.get(i).getFullName();
 				} else {
-					return false;
+					return null;
 				}
 			}
 			i++;
 		} while (i < clients.size());
-		return false;
+		return null;
 	}
 }
