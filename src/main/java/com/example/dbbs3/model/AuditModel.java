@@ -18,9 +18,11 @@ import java.util.Date;
 )
 
 public abstract class AuditModel implements Serializable {
-    @Temporal(TemporalType.TIMESTAMP)
+    
+	@Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date", nullable = false, updatable = false)
     @CreatedDate
+    
     private Date date;
 
     public Date getDate() {
@@ -30,4 +32,5 @@ public abstract class AuditModel implements Serializable {
     public void setDate(Date date) {
         this.date = date;
     }
+    
 }

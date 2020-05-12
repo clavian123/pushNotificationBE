@@ -30,11 +30,14 @@ public class TransactionController {
 	@Autowired
 	private TransactionService transactionService;
 	
+	
 	@Autowired
 	TempOtpService tempOtpService;
 	
+	
 	@Autowired
 	ClientService clientService;
+	
 	
 	@RequestMapping(value = "/saveNewTransaction", method = RequestMethod.POST)
 	@ResponseBody
@@ -47,8 +50,10 @@ public class TransactionController {
 		return transactionService.saveNewTransaction(accNumberSender, accNumberReceiver, amount, type, note);
 	}
 	
+	
 	@RequestMapping(value = "/otp", method = RequestMethod.POST)
 	ResponseEntity<OtpReponse> cekToken(@RequestBody OtpRequest accNumber) {
+		
 		OtpReponse response = new OtpReponse();
 		
 		Date now = new Date();
@@ -62,7 +67,7 @@ public class TransactionController {
 		String code = Integer.toString(n);
 		Client data = clientService.getClientByAccNumber(accNumber.getAccNumber());
 		
-		if(data != null) {
+		if (data != null) {
 			try {
 				TempOtp tempOtp = new TempOtp();
 				tempOtp.setAccNumber(data.getAccNumber());
@@ -76,10 +81,12 @@ public class TransactionController {
 			} catch (Exception e) {
 				System.err.println("error : " + e.getCause());
 			}
-		}else {
+		} else {
 			response.setChekAccNumber(false);
 		}
 		
 		return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.APPLICATION_JSON).body(response);
+	
 	}
+	
 }

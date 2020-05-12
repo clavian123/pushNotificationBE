@@ -14,13 +14,16 @@ public class HistoryClientService {
 	@Autowired
 	private HistoryClientRepository repository;
 	
+	
 	public HistoryClient saveHistory(HistoryClient history) {
 		return repository.save(history);
 	}
 	
+	
 	public List<HistoryClient> getAllHistoriesByAccNumber(int acc_number) {
 		return repository.getAllHistoriesbyAccNumber(acc_number);
 	}
+	
 	
 	public List<HistoryClient> getAllHistoriesByAccNumberAndDates(int accNumber, String startDate, String endDate){
 		return repository.getAllHistoriesByAccNumberAndDates(accNumber, startDate, endDate);

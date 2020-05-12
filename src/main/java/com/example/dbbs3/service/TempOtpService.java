@@ -14,9 +14,11 @@ public class TempOtpService {
 	@Autowired
 	private TempOtpRepository tempOtpRepository;
 	
+	
 	public List<TempOtp> getTempOtpByAccNumber(int accNumber){
 		return tempOtpRepository.findByAccNumber(accNumber);
 	}
+	
 	
 	public TempOtp saveTempOtp(TempOtp tempOtp) {
 		return tempOtpRepository.save(tempOtp);

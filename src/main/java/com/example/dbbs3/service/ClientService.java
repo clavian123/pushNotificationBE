@@ -55,7 +55,7 @@ public class ClientService {
 	public void updateBalance(Client client, int amount, String type) {
 		Client existingClient = repository.findById(client.getAccNumber()).orElse(null);
 		int balance = existingClient.getBalance();
-		if(type.equalsIgnoreCase("send")) {
+		if (type.equalsIgnoreCase("send")) {
 			balance = balance - amount;
 		} else {
 			balance = balance + amount;
@@ -71,7 +71,7 @@ public class ClientService {
 		int i = 0;
 		do {
 			if (accNum == clients.get(i).getAccNumber()) {
-				if(pin.equals(clients.get(i).getPin())) {
+				if (pin.equals(clients.get(i).getPin())) {
 					return clients.get(i).getFullName();
 				} else {
 					return null;

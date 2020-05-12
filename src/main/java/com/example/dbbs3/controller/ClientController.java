@@ -26,25 +26,30 @@ public class ClientController {
 	@Autowired
 	private ClientService service;
 	
+	
 	@PostMapping("/saveNewClient")
 	public Client Client(@RequestBody Client client) {
 		return service.saveNewClient(client);
 	}
+	
 	
 	@PostMapping("/saveNewClients")
 	public List<Client> saveNewClients(@RequestBody List<Client> clients) {
 		return service.saveNewClients(clients);
 	}
 	
+	
 	@GetMapping("/clients")
 	public List<Client> getAllClients() {
 		return service.getAllClients();
 	}
 	
+	
 	@GetMapping("/client/{accNumber}")
 	public Client getClientByAccNumber(@PathVariable int accNumber) {
 		return service.getClientByAccNumber(accNumber);
 	}
+	
 	
 	@RequestMapping(value = "/getBalanceByAccNumber", method = RequestMethod.POST)
 	@ResponseBody
@@ -52,15 +57,18 @@ public class ClientController {
 		return service.getBalanceByAccNumber(object.get("accNumber").asInt());
 	}
 	
+	
 	@PutMapping("/updateClient")
 	public Client updateClient(@RequestBody Client client) {
 		return service.updateClient(client);
 	}
 	
+	
 	@DeleteMapping("/delete/{accNumber}")
 	public String deleteClient(@PathVariable int accNumber) {
 		return service.deleteClient(accNumber);
 	}
+	
 	
 	@RequestMapping(value = "/validateLogin", method = RequestMethod.POST)
 	@ResponseBody
@@ -68,9 +76,11 @@ public class ClientController {
 		return service.validateLogin(clientLogin.get("accNumber").asText(), clientLogin.get("pin").asText());
 	}
 	
+	
 	@RequestMapping(value = "/validateDestinationAccount", method = RequestMethod.POST)
 	@ResponseBody
 	public Client validateDestinationAccount(@RequestBody ObjectNode object) {
 		return service.getClientByAccNumber(object.get("accNumber").asInt());
 	}
+
 }

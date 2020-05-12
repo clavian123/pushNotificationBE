@@ -12,6 +12,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="temp_otp")
 public class TempOtp {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id_temp_otp")
@@ -34,12 +35,14 @@ public class TempOtp {
 	}
 
 	public TempOtp(long idTempRegis, Date expDate, Date createdDate, String token, int accNumber) {
+		
 		super();
 		this.idTempRegis = idTempRegis;
 		this.expDate = expDate;
 		this.createdDate = createdDate;
 		this.token = token;
 		this.accNumber = accNumber;
+	
 	}
 
 	public long getIdTempRegis() {
@@ -81,7 +84,5 @@ public class TempOtp {
 	public void setAccNumber(int accNumber) {
 		this.accNumber = accNumber;
 	}
-	
-	
 	
 }

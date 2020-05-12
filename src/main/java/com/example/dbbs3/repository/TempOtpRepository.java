@@ -9,5 +9,7 @@ import com.example.dbbs3.model.TempOtp;
 
 @Repository
 public interface TempOtpRepository extends JpaRepository<TempOtp, Long>{
+	
 	List<TempOtp> findByAccNumber(int accNumber);
+
 }

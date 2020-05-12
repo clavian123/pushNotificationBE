@@ -14,13 +14,17 @@ public class TransactionService {
 	@Autowired
 	private ClientService clientService;
 	
+	
 	@Autowired
 	private HistoryClientService historyClientService;
+	
 	
 	@Autowired
 	private TransactionRepository transactionRepository;
 	
+	
 	public Transaction saveNewTransaction(int accNumberSender, int accNumberReceiver, int amount, String type, String note) {
+		
 		Client clientSender = clientService.getClientByAccNumber(accNumberSender);
 		Client clientReceiver = clientService.getClientByAccNumber(accNumberReceiver);
 		
@@ -54,5 +58,7 @@ public class TransactionService {
 		historyClientService.saveHistory(historyReceiver);
 		
 		return newTransaction;
+		
 	}
+	
 }

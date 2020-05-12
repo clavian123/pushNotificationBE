@@ -21,14 +21,17 @@ public class AccountRelationController {
 	@Autowired
 	private AccountRelationService relationService;
 	
+	
 	@Autowired
 	private ClientService clientService;
+	
 	
 	@RequestMapping(value = "/getAllRelationsByAccNumber", method = RequestMethod.POST)
 	@ResponseBody
 	public List<DTOAccountRelation> getAllRelationsByAccNumber(@RequestBody ObjectNode object) {
 		return relationService.getAllRelationsByAccNumber(object.get("accNumber").asInt());
 	}
+	
 	
 	@RequestMapping(value = "/saveNewRelation", method = RequestMethod.POST)
 	@ResponseBody
@@ -43,5 +46,6 @@ public class AccountRelationController {
 		relation.setClientDest(clientService.getClientByAccNumber(accNumberDest));
 		
 		return relationService.saveNewRelation(relation);
+	
 	}
 }

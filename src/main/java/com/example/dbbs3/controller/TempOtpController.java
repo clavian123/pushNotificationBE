@@ -15,34 +15,42 @@ import com.example.dbbs3.service.TempOtpService;
 
 @RestController
 public class TempOtpController {
-	public static boolean compareDates(Date date1,Date date2){
-        if(date1.after(date2)){
-            return false;
-        }else if(date1.before(date2)){
-           	return true;
-        }else if(date1.equals(date2)){
-            return true;
-        }
-        return true;
-    }
 	
 	@Autowired
 	TempOtpService tempOtpService;
 	
+	
+	public static boolean compareDates(Date date1,Date date2){
+		
+		if (date1.after(date2)) {
+            return false;
+        } else if (date1.before(date2)) {
+           	return true;
+        } else if (date1.equals(date2)) {
+            return true;
+        }
+        
+		return true;
+	
+	}
+	
+	
 	@RequestMapping(value = "/checkOtp", method = RequestMethod.POST)
 	public boolean checkToken(@RequestBody OtpRequest request) {
+		
 		List<TempOtp> list = tempOtpService.getTempOtpByAccNumber(request.getAccNumber());
 		TempOtp data = list.get(list.size()-1);
 		Date now = new Date();
 		
-		if(data.getToken().equals(request.getToken())) {
-			if(compareDates(now, data.getExpDate())) {
+		if (data.getToken().equals(request.getToken())) {
+			if (compareDates(now, data.getExpDate())) 
 				return true;
-			}
-		}else {
+		} else {
 			return false;
 		}	
 		
 		return false;
+		
 	}
+	
 }

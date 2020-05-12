@@ -19,11 +19,13 @@ public class HistoryClientController {
 	@Autowired
 	private HistoryClientService service;
 	
+	
 	@RequestMapping(value = "/getAllHistoriesByAccNumber", method = RequestMethod.POST)
 	@ResponseBody
 	public List<HistoryClient> getAllHistoriesByAccNumber(@RequestBody ObjectNode object) {
 		return service.getAllHistoriesByAccNumber(object.get("accNumber").asInt());
 	}
+	
 	
 	@RequestMapping(value = "/getAllHistoriesByAccNumberAndDates", method = RequestMethod.POST)
 	@ResponseBody
